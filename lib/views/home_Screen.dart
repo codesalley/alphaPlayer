@@ -1,12 +1,13 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:alpha/components/categoryBar.dart';
 import 'package:alpha/controllers/allSongs_controller.dart';
+import 'package:alpha/views/albums_card.dart';
+import 'package:alpha/views/artist_card.dart';
+import 'package:alpha/views/playList_card.dart';
 import 'package:alpha/views/songs_card.dart';
-import 'package:audiotagger/audiotagger.dart';
-import 'package:flutter_audio_query/flutter_audio_query.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_audio_query/flutter_audio_query.dart';
 import 'package:get/get.dart';
 
 import '../constants.dart';
@@ -32,9 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
   List menus = ['Songs', 'Playlist', 'Artist', 'Albums'];
   List catergories = [
     SongsTile(),
-    Container(width: 200, height: 200, color: Colors.deepPurple),
-    Container(width: 200, height: 200, color: Colors.yellowAccent),
-    Container(width: 200, height: 200, color: Colors.greenAccent),
+    PlayListCard(),
+    ArtistCard(),
+    AlbumsCard(),
   ];
 
   @override

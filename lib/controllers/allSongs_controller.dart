@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:alpha/modals/song.dart';
 import 'package:audiotagger/audiotagger.dart';
@@ -14,11 +13,12 @@ class AllSongs extends GetxController {
   final allSongsInDevice = <Song>[];
   dynamic songArtWork;
 
+  int get lenght => allSongsInDevice.length;
   @override
   Future<void> onInit() async {
     print('init runner checked');
-    await getAllSongs();
     super.onInit();
+    await getAllSongs();
     print('number of songs ${allSongsInDevice.length}');
   }
 
@@ -91,7 +91,7 @@ class AllSongs extends GetxController {
   void getArtWork(String path) {
     try {
       Audiotagger().readArtwork(path: path).then((value) =>
-          value.length < 20000 ? songArtWork = null : songArtWork = value);
+          value.length == null ? songArtWork = null : songArtWork = value);
     } catch (e) {
       print(e);
     }

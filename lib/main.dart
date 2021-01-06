@@ -1,3 +1,4 @@
+import 'package:alpha/views/splash_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark()
           .copyWith(visualDensity: VisualDensity.adaptivePlatformDensity),
 
-      home: HomeScreen(),
+      home: SplashScreen(),
       // initialBinding: ,
     );
   }

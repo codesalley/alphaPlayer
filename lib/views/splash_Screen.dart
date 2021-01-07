@@ -12,7 +12,6 @@ class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   Animation<double> _animation;
   AnimationController animationController;
-  final setUpController = AllSongs();
 
   @override
   void initState() {
@@ -27,8 +26,10 @@ class _SplashScreenState extends State<SplashScreen>
     )..addListener(() async {
         if (_animation.isCompleted) {
           WidgetsFlutterBinding.ensureInitialized();
-          await setUpController.getAllSongs();
-          print('expes ${setUpController.lenght}');
+          Future.delayed(Duration(seconds: 3));
+          Get.find<AllSongs>();
+
+          // print('expes ${setUpController.lenght}');
 
           Get.to(HomeScreen());
         }

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:alpha/components/categoryBar.dart';
 import 'package:alpha/controllers/allSongs_controller.dart';
@@ -6,8 +7,9 @@ import 'package:alpha/views/albums_card.dart';
 import 'package:alpha/views/artist_card.dart';
 import 'package:alpha/views/playList_card.dart';
 import 'package:alpha/views/songs_card.dart';
-import 'package:flutter/material.dart';
+import 'package:audiotagger/audiotagger.dart';
 import 'package:flutter_audio_query/flutter_audio_query.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../constants.dart';
@@ -19,8 +21,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   FlutterAudioQuery audioQuery = FlutterAudioQuery();
-
-  final musicController = Get.find<AllSongs>();
 
   @override
   void initState() {

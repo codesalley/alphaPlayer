@@ -9,45 +9,36 @@ class SongsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AllSongs controller = Get.find<AllSongs>();
+
     return Container(
-      child: GetBuilder<AllSongs>(
-        init: AllSongs(),
-        builder: (controller) {
-          return ListView.builder(
-            itemCount: controller.allSongsInDevice.length,
-            itemBuilder: (context, int index) {
-              final path = controller.allSongsInDevice[index].path;
-              final songName = controller.allSongsInDevice[index].songTitle;
+      child: ListView.builder(
+        itemCount: controller.allSongsInDevice.length,
+        itemBuilder: (_, int index) {
+          final path = controller.allSongsInDevice[index].path;
 
-              final artistName = controller.allSongsInDevice[index].artistName;
-              controller.getArtWork(path);
+          controller.getArtWork(path);
+          final currentSongTitle = controller.allSongsInDevice[index].songTitle;
+          final currentSongArtist =
+              controller.allSongsInDevice[index].artistName;
 
-              return GestureDetector(
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 5,
-                  ),
-                  child: ListTile(
-                    leading: Container(
-                      width: 55,
-                      height: 55,
-                      child: ClipRRect(
-                        child: Image(
-                          image: controller.songArtWork != null
-                              ? MemoryImage(controller.songArtWork)
-                              : AssetImage(
-                                  'res/album.jpg',
-                                ),
-                        ),
-                      ),
-                    ),
-                    title: Text(songName),
-                    subtitle: Text(artistName),
-                    trailing: Icon(Icons.more_vert_rounded),
-                  ),
+          return AnimatedPadding(
+            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            duration: Duration(seconds: 3),
+            child: ListTile(
+              leading: ClipRRect(
+                child: Image(
+                  image: controller.songArtWork != null
+                      ? MemoryImage(
+                          controller.songArtWork,
+                        )
+                      : AssetImage('res/album.jpg'),
                 ),
-              );
-            },
+              ),
+              title: Text(currentSongTitle),
+              subtitle: Text(currentSongArtist),
+              trailing: Icon(Icons.more_vert_outlined),
+            ),
           );
         },
       ),

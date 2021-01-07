@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:alpha/modals/song.dart';
 import 'package:audiotagger/audiotagger.dart';
@@ -10,16 +11,14 @@ import 'package:permission_handler/permission_handler.dart';
 //TODO  after getting all mp3 files paths, i want to save it on the database 1first 2then render to user from databas.
 
 class AllSongs extends GetxController {
-  final allSongsInDevice = <Song>[];
+  final allSongsInDevice = <Song>[].obs();
   dynamic songArtWork;
 
   int get lenght => allSongsInDevice.length;
   @override
   Future<void> onInit() async {
-    print('init runner checked');
     super.onInit();
     await getAllSongs();
-    print('number of songs ${allSongsInDevice.length}');
   }
 
   Future<void> getAllSongs() async {

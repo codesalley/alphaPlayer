@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:alpha/modals/song.dart';
 import 'package:audiotagger/audiotagger.dart';
+import 'package:flutter_audio_query/flutter_audio_query.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -12,6 +13,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 class AllSongs extends GetxController {
   final allSongsInDevice = <Song>[].obs();
+  List allArtist = [].obs();
   dynamic songArtWork;
 
   int get lenght => allSongsInDevice.length;
@@ -94,5 +96,11 @@ class AllSongs extends GetxController {
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<List> getAllArtist() async {
+    FlutterAudioQuery audioQuery = FlutterAudioQuery();
+    List<ArtistInfo> allArtist = await audioQuery.getArtists();
+    return allArtist;
   }
 }

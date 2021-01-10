@@ -20,26 +20,8 @@ class AlbumsCard extends StatelessWidget {
                   mainAxisSpacing: 10,
                 ),
                 itemBuilder: (_, int index) {
-                  final path = controller.allSongsInDevice[index].path;
-
-                  controller.getArtWork(path);
-
-                  final currentSongArtist =
-                      controller.allSongsInDevice[index].artistName;
                   return Column(
-                    children: [
-                      ClipRRect(
-                        child: Image(
-                          fit: BoxFit.fitHeight,
-                          image: controller.songArtWork != null
-                              ? MemoryImage(
-                                  controller.songArtWork,
-                                )
-                              : AssetImage('res/album.jpg'),
-                        ),
-                      ),
-                      Text(currentSongArtist)
-                    ],
+                    children: [],
                   );
                 }),
           ),
